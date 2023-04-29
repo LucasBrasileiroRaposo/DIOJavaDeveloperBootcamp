@@ -4,6 +4,7 @@ import com.example.desafiospringdatajpa.entities.DTOs.AlunoDTO;
 import com.example.desafiospringdatajpa.entities.models.Aluno;
 import com.example.desafiospringdatajpa.entities.models.AvaliacaoFisica;
 import com.example.desafiospringdatajpa.services.AlunoServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,13 @@ public class AlunoController {
     private AlunoServiceImpl alunoService;
 
     @PostMapping
-    public Aluno createAluno(@RequestBody AlunoDTO alunoDTO) throws Exception {
-        if (alunoDTO == null) throw new Exception(new IllegalAccessError());
+    public Aluno createAluno(@Valid @RequestBody AlunoDTO alunoDTO)  {
         return alunoService.create(alunoDTO);
+    }
+
+    @PutMapping("/{id}")
+    public Aluno updateAluno(@PathVariable Long id, @Valid @RequestBody AlunoDTO alunoDTO) {
+        return alunoService.update(id, alunoDTO);
     }
 
     @GetMapping("/avaliacoes/{id}")

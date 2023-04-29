@@ -21,6 +21,11 @@ public class MatriculaController {
         return matriculaService.create(matriculaDTO);
     }
 
+    @PutMapping("/{id}")
+    public Matricula updateMatricula(@PathVariable Long id, @Valid @RequestBody MatriculaDTO matriculaDTO) {
+        return matriculaService.update(id, matriculaDTO);
+    }
+
     @GetMapping("/{id}")
     public Matricula getOne(@PathVariable Long id) {
         return this.matriculaService.get(id);

@@ -20,6 +20,8 @@ public class AvaliacaoFisicaController {
         return avaliacaoFisicaService.create(avaliacaoFisicaDTO);
     }
 
+    @PutMapping
+
     @GetMapping("/{id}")
     public AvaliacaoFisica getOne(@PathVariable Long id) {
         return avaliacaoFisicaService.get(id);

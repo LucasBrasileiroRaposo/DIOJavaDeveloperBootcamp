@@ -30,8 +30,10 @@ public class AlunoServiceImpl implements AlunoService {
     }
 
     @Override
-    public Aluno update(AlunoDTO alunoDTO) {
-        return null;
+    public Aluno update(Long id, AlunoDTO alunoDTO) {
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+        if (aluno.isEmpty()) throw new EntityNotFoundException();
+        return alunoRepository.save(aluno.get());
     }
 
     @Override

@@ -56,4 +56,11 @@ public class MatriculaServiceImpl implements MatriculaService{
         this.matriculaRepository.delete(matricula.get());
     }
 
+    @Override
+    public Matricula update(Long id, MatriculaDTO matriculaDTO) {
+        Optional<Matricula> matricula = this.matriculaRepository.findById(id);
+        if (matricula.isEmpty()) throw new EntityNotFoundException();
+        return this.matriculaRepository.save(matricula.get());
+    }
+
 }
